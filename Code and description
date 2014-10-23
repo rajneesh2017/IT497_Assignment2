@@ -48,7 +48,7 @@ library(ggplot2)
 
 IndiaInternetStats = Quandl("IWS/INDIAINTERNETSTATS",authcode="ZDuWCWDyWHtzZi_rHoAY")
 
-colnames(IndiaInternetStats)[colnames(IndiaInternetStats) == "% Pen."] <- "Percentage Pen" #Renaming the column
+colnames(IndiaInternetStats)[colnames(IndiaInternetStats) == "% Pen."] <- "PercentagePen" #Renaming the column
 #Table shows that India Internet Usage Stats
 IndiaInternetStats
 
@@ -92,23 +92,34 @@ IndiaInternetStats
 
 \begin{description}
 \item [YEAR] is a column in data format and it ranges from 12/31/1998 to 12/31/2012.
-\item [Users] is a column of numeric type which tells numbe/r of Internet users.
+\item [Users] is a column of numeric type which tells number of Internet users.
 \item [Population] is a column of numeric type tell about the population according to the "YEAR" column.
-\item [Percentage Pen] is a column which tells about the percentage penetration. It is the percentage of a country's population that are Internet users.
+\item [PercentagePen] is a column which tells about the percentage penetration. It is the percentage of a country's population that are Internet users.
 \end{description}
 
 \subsection{Graph}
-
+\subsubsection{Graph for Population and Internet users of India}
 
 <<label=chunk11,fig=TRUE,include=TRUE,height=4, width=7>>=
 ggplot(data=IndiaInternetStats, aes(x=YEAR)) + ylab("")+
   geom_line(aes(y = Users, colour = "Users")) + 
   geom_line(aes(y = Population, colour = "Population"))+
-  ggtitle("India Internet Usage") +   # Set title
+  ggtitle("Graph 1") +   # Set title
   scale_colour_hue(name="") 
 @
+Graph 1 shows that population growth rate and Internet users growth rate. 
 
-The above line graph shows the growth of the internet users with respect to population in particular year.
+\subsubsection{Graph for Percentage penetration}
+<<label=chunk12,fig=TRUE,include=TRUE,height=4, width=7>>=
+  ggplot(data=IndiaInternetStats, aes(x=YEAR)) + ylab("")+
+  geom_line(aes(y = PercentagePen,color ="PercentagePen")) + 
+  ggtitle("Graph 2") +   # Set title
+  scale_colour_hue(name="") 
+@
+Graph 2 shows percentage penetration growth from the year 1998 to 2012.
+
+
+The above line graphs shows the growth of the internet users with respect to population in particular year.
 
 
 
